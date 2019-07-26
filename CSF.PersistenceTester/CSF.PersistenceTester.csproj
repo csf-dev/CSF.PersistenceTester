@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NHibernate" Version="5.1.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Builder\" />
+    <Folder Include="Impl\" />
+  </ItemGroup>
+</Project>
