@@ -27,7 +27,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using NHibernate;
 
 namespace CSF.PersistenceTester.Builder
 {
@@ -44,6 +43,6 @@ namespace CSF.PersistenceTester.Builder
     ITesterBuilderConfig<T> WithoutProperty(PropertyInfo property);
     ITesterBuilderConfig<T> WithEqualityTest(Func<T, T, bool> equalityTestFunction);
     ITesterBuilderConfig<T> WithoutEqualityTest();
-    ITesterBuilderConfig<T> WithPreTestActions(Action<ISession> actions);
+    ITesterBuilderConfig<T> WithPreTestActions(Action actions);
   }
 }

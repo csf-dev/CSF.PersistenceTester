@@ -1,5 +1,5 @@
 ﻿//
-// TesterOptions.cs
+// IPersistsObjects.cs
 //
 // Author:
 //       Craig Fowler <craig@csf-dev.com>
@@ -24,26 +24,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using System.Reflection;
-
-namespace CSF.PersistenceTester.Impl
+namespace CSF.PersistenceTester.Persister
 {
-  public class TesterOptions
+  public interface IPersistsObjects
   {
-    public bool TestAllPublicProperties { get; set; }
+    void Save<T>(T toSave) where T : class;
 
-    public Func<object,object,bool> EqualityTest { get; set; }
+    void EvictFromCache<T>(T toEvict) where T : class;
 
-    public bool SkipEqualityTest { get; set; }
-
-    public Action PreTestAction { get; set; }
-
-    public ICollection<PropertyInfo> ExcludedProperties { get; }
-
-    public TesterOptions()
-    {
-      ExcludedProperties = new HashSet<PropertyInfo>();
-    }
+    T Get<T>(object identity) where T : class;
   }
 }

@@ -1,5 +1,5 @@
 ﻿//
-// TesterOptions.cs
+// AutoMoqDataAttribute.cs
 //
 // Author:
 //       Craig Fowler <craig@csf-dev.com>
@@ -24,26 +24,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
-using System.Reflection;
+using AutoFixture;
+using AutoFixture.AutoMoq;
+using AutoFixture.NUnit3;
 
-namespace CSF.PersistenceTester.Impl
+namespace CSF.PersistenceTester.Tests
 {
-  public class TesterOptions
+  public class AutoMoqDataAttribute : AutoDataAttribute
   {
-    public bool TestAllPublicProperties { get; set; }
-
-    public Func<object,object,bool> EqualityTest { get; set; }
-
-    public bool SkipEqualityTest { get; set; }
-
-    public Action PreTestAction { get; set; }
-
-    public ICollection<PropertyInfo> ExcludedProperties { get; }
-
-    public TesterOptions()
-    {
-      ExcludedProperties = new HashSet<PropertyInfo>();
-    }
+    public AutoMoqDataAttribute() : base(() => new Fixture().Customize(new AutoMoqCustomization())) { }
   }
 }

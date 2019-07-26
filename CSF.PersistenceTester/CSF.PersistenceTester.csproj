@@ -1,17 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard1.2</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NHibernate" Version="5.1.5" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Builder\" />
     <Folder Include="Impl\" />
+    <Folder Include="Persister\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="CSF.CollectionComparers" Version="1.0.0" />
   </ItemGroup>
 </Project>

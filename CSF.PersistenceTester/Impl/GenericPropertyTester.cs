@@ -43,7 +43,7 @@ namespace CSF.PersistenceTester.Impl
       if(Getter == null)
         return (TProperty) Property.GetValue(testedEntity);
 
-      var entity = (TEntity) testedEntity;
+      var entity = testedEntity;
       return Getter(entity);
     }
 
@@ -64,21 +64,18 @@ namespace CSF.PersistenceTester.Impl
       return AreValuesEqual((TEntity) entityOne, (TEntity) entityTwo);
     }
 
-    protected GenericPropertyTester(PropertyInfo property)
+    public GenericPropertyTester(PropertyInfo property, Func<TProperty, TProperty, bool> comparison)
     {
       Property = property ?? throw new ArgumentNullException(nameof(property));
-    }
-
-    public GenericPropertyTester(PropertyInfo property, Func<TProperty, TProperty, bool> comparison) : this(property)
-    {
       testFunction = comparison ?? throw new ArgumentNullException(nameof(comparison));
     }
 
-    public GenericPropertyTester(PropertyInfo property, IEqualityComparer<TProperty> comparison) : this(property)
+    public GenericPropertyTester(PropertyInfo property, IEqualityComparer<TProperty> comparison)
     {
       if(comparison == null)
         throw new ArgumentNullException(nameof(comparison));
 
+      Property = property ?? throw new ArgumentNullException(nameof(property));
       testFunction = (a, b) => comparison.Equals(a, b);
     }
 
@@ -87,6 +84,7 @@ namespace CSF.PersistenceTester.Impl
       if(comparison == null)
         throw new ArgumentNullException(nameof(comparison));
 
+      Property = property ?? throw new ArgumentNullException(nameof(property));
       testFunction = (a, b) => comparison.Equals(a, b);
     }
 
