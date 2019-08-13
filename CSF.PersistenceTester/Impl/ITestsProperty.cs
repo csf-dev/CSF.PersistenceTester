@@ -30,8 +30,6 @@ namespace CSF.PersistenceTester.Impl
 {
   public interface ITestsProperty
   {
-    PropertyInfo Property { get; }
-
     object GetValue(object testedEntity);
 
     bool AreValuesEqual(object entityOne, object entityTwo);

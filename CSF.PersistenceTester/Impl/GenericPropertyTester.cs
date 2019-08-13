@@ -24,71 +24,35 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace CSF.PersistenceTester.Impl
 {
   public class GenericPropertyTester<TEntity, TProperty> : ITestsProperty
   {
-    readonly Func<TProperty, TProperty, bool> testFunction;
+    readonly IEqualityComparer<TProperty> comparer;
+    readonly IGetsPropertyValue<TEntity, TProperty> valueProvider;
 
-    public PropertyInfo Property { get; }
-
-    public Func<TEntity, TProperty> Getter { get; set; }
-
-    public TProperty GetValue(TEntity testedEntity)
-    {
-      if(Getter == null)
-        return (TProperty) Property.GetValue(testedEntity);
-
-      var entity = testedEntity;
-      return Getter(entity);
-    }
+    public TProperty GetValue(TEntity testedEntity) => valueProvider.GetValue(testedEntity);
 
     public bool AreValuesEqual(TEntity entityOne, TEntity entityTwo)
     {
       var valOne = GetValue(entityOne);
       var valTwo = GetValue(entityTwo);
-      return testFunction(valOne, valTwo);
+      return comparer.Equals(valOne, valTwo);
     }
 
-    object ITestsProperty.GetValue(object testedEntity)
+    object ITestsProperty.GetValue(object testedEntity) => GetValue((TEntity) testedEntity);
+
+    bool ITestsProperty.AreValuesEqual(object entityOne, object entityTwo) => AreValuesEqual((TEntity) entityOne, (TEntity) entityTwo);
+
+    public GenericPropertyTester(IGetsPropertyValue<TEntity, TProperty> valueProvider, IEqualityComparer<TProperty> comparer)
     {
-      return GetValue((TEntity) testedEntity);
+        this.valueProvider = valueProvider ?? throw new ArgumentNullException(nameof(valueProvider));
+      this.comparer = comparer ?? throw new ArgumentNullException(nameof(comparer));
     }
 
-    bool ITestsProperty.AreValuesEqual(object entityOne, object entityTwo)
-    {
-      return AreValuesEqual((TEntity) entityOne, (TEntity) entityTwo);
-    }
-
-    public GenericPropertyTester(PropertyInfo property, Func<TProperty, TProperty, bool> comparison)
-    {
-      Property = property ?? throw new ArgumentNullException(nameof(property));
-      testFunction = comparison ?? throw new ArgumentNullException(nameof(comparison));
-    }
-
-    public GenericPropertyTester(PropertyInfo property, IEqualityComparer<TProperty> comparison)
-    {
-      if(comparison == null)
-        throw new ArgumentNullException(nameof(comparison));
-
-      Property = property ?? throw new ArgumentNullException(nameof(property));
-      testFunction = (a, b) => comparison.Equals(a, b);
-    }
-
-    public GenericPropertyTester(PropertyInfo property, IEqualityComparer comparison) : this(property)
-    {
-      if(comparison == null)
-        throw new ArgumentNullException(nameof(comparison));
-
-      Property = property ?? throw new ArgumentNullException(nameof(property));
-      testFunction = (a, b) => comparison.Equals(a, b);
-    }
-
-    public GenericPropertyTester(PropertyInfo property)
-      : this(property, (IEqualityComparer<TProperty>) EqualityComparer<TProperty>.Default) { }
+    public GenericPropertyTester(IGetsPropertyValue<TEntity, TProperty> valueProvider)
+      : this(valueProvider, EqualityComparer<TProperty>.Default) { }
   }
 }
