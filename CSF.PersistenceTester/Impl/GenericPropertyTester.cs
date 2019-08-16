@@ -30,7 +30,7 @@ namespace CSF.PersistenceTester.Impl
 {
   public class GenericPropertyTester<TEntity, TProperty> : ITestsProperty
   {
-    readonly IEqualityComparer<TProperty> comparer;
+    readonly IEqualityRule<TProperty> rule;
     readonly IGetsPropertyValue<TEntity, TProperty> valueProvider;
 
     public TProperty GetValue(TEntity testedEntity) => valueProvider.GetValue(testedEntity);
@@ -39,20 +39,17 @@ namespace CSF.PersistenceTester.Impl
     {
       var valOne = GetValue(entityOne);
       var valTwo = GetValue(entityTwo);
-      return comparer.Equals(valOne, valTwo);
+      return rule.Equals(valOne, valTwo);
     }
 
     object ITestsProperty.GetValue(object testedEntity) => GetValue((TEntity) testedEntity);
 
     bool ITestsProperty.AreValuesEqual(object entityOne, object entityTwo) => AreValuesEqual((TEntity) entityOne, (TEntity) entityTwo);
 
-    public GenericPropertyTester(IGetsPropertyValue<TEntity, TProperty> valueProvider, IEqualityComparer<TProperty> comparer)
+    public GenericPropertyTester(IGetsPropertyValue<TEntity, TProperty> valueProvider, IEqualityRule<TProperty> rule = null)
     {
         this.valueProvider = valueProvider ?? throw new ArgumentNullException(nameof(valueProvider));
-      this.comparer = comparer ?? throw new ArgumentNullException(nameof(comparer));
+        this.rule = rule ?? new DelegateEqualityRule<TProperty>(EqualityComparer<TProperty>.Default.Equals);
     }
-
-    public GenericPropertyTester(IGetsPropertyValue<TEntity, TProperty> valueProvider)
-      : this(valueProvider, EqualityComparer<TProperty>.Default) { }
   }
 }
