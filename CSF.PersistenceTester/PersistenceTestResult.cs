@@ -24,28 +24,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 using System;
-using System.Collections.Generic;
+using CSF.EqualityRules;
 
 namespace CSF.PersistenceTester
 {
-  public class PersistenceTestResult
-  {
-    public Type TestedType { get; }
-
-    public Exception SaveException { get; set; }
-
-    public Exception GetException { get; set; }
-
-    public Exception EqualityException { get; set; }
-
-    public ICollection<PropertyResult> PropertyResults { get; }
-
-    public bool EqualitySuccess { get; set; }
-
-    public PersistenceTestResult(Type testedType)
+    public class PersistenceTestResult
     {
-      TestedType = testedType ?? throw new ArgumentNullException(nameof(testedType));
-      PropertyResults = new List<PropertyResult>();
+        public Type TestedType { get; }
+
+        public Exception SetupException { get; set; }
+
+        public Exception SaveException { get; set; }
+
+        public Exception ComparisonException { get; set; }
+
+        public EqualityResult EqualityResult { get; set; }
+
+        public PersistenceTestResult(Type testedType)
+        {
+            TestedType = testedType ?? throw new ArgumentNullException(nameof(testedType));
+        }
     }
-  }
 }

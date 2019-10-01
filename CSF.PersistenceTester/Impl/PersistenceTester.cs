@@ -1,48 +1,118 @@
-﻿//
-// PersistenceTester.cs
-//
-// Author:
-//       Craig Fowler <craig@csf-dev.com>
-//
-// Copyright (c) 2019 Craig Fowler
-//
-// Permission is hereby granted, free of charge, to any person obtaining a copy
-// of this software and associated documentation files (the "Software"), to deal
-// in the Software without restriction, including without limitation the rights
-// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-// copies of the Software, and to permit persons to whom the Software is
-// furnished to do so, subject to the following conditions:
-//
-// The above copyright notice and this permission notice shall be included in
-// all copies or substantial portions of the Software.
-//
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-// THE SOFTWARE.
-using System;
+﻿using System;
+using NHibernate;
+
 namespace CSF.PersistenceTester.Impl
 {
-  public class PersistenceTester<T> : ITestsPersistence<T> where T : class
-  {
-    readonly TesterOptions options;
-
-    public PersistenceTestResult TestPersistence(T testedObject)
+    public class PersistenceTester<T> : ITestsPersistence<T>where T : class
     {
-      throw new NotImplementedException();
-    }
+        readonly PersistenceTestSpec<T> spec;
+        object identity;
 
-    PersistenceTestResult ITestsPersistence.TestPersistence(object testedObject)
-    {
-      return TestPersistence((T) testedObject);
-    }
+        public PersistenceTestResult GetTestResult()
+        {
+            PersistenceTestResult result = null;
 
-    public PersistenceTester(TesterOptions options)
-    {
-      this.options = options ?? throw new ArgumentNullException(nameof(options));
+            result = TrySetup();
+            if (result != null) return result;
+
+            result = TrySave();
+            if (result != null) return result;
+
+            return TryCompare();
+        }
+
+        PersistenceTestResult TrySetup()
+        {
+            try
+            {
+                spec.Setup?.Invoke(spec.SessionProvider.GetSession());
+            }
+            catch(Exception ex)
+            {
+                return new PersistenceTestResult(typeof(T))
+                {
+                    SetupException = ex
+                };
+            }
+
+            return null;
+        }
+
+        PersistenceTestResult TrySave()
+        {
+            var session = spec.SessionProvider.GetSession();
+
+            try
+            {
+                using (var tran = session.BeginTransaction())
+                {
+                    identity = session.Save(spec.Entity);
+                    if (identity == null)
+                        throw new InvalidOperationException($"The entity identity returned by {nameof(ISession)}.{nameof(ISession.Save)} should not be null.");
+                    tran.Commit();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new PersistenceTestResult(typeof(T))
+                {
+                    SaveException = ex
+                };
+            }
+
+            return null;
+        }
+
+        PersistenceTestResult TryCompare()
+        {
+            var session = spec.SessionProvider.GetSession();
+
+            try
+            {
+                session.Evict(spec.Entity);
+
+                var retrieved = session.Get<T>(identity);
+
+                var equalityResult = spec.EqualityRule.GetEqualityResult(spec.Entity, retrieved);
+
+                return new PersistenceTestResult(typeof(T))
+                {
+                    EqualityResult = equalityResult
+                };
+            }
+            catch (Exception ex)
+            {
+                return new PersistenceTestResult(typeof(T))
+                {
+                    ComparisonException = ex
+                };
+            }
+        }
+
+        public PersistenceTester(PersistenceTestSpec<T> spec)
+        {
+            this.spec = spec ?? throw new ArgumentNullException(nameof(spec));
+        }
+
+        #region IDisposable Support
+        private bool disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    spec.SessionProvider.Dispose();
+                }
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+        }
+        #endregion
     }
-  }
 }

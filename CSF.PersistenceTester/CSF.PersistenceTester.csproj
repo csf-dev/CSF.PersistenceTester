@@ -1,17 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.2</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <Compile Remove="Class1.cs" />
+    <Compile Remove="Builder\IBuildsTester.cs" />
+    <Compile Remove="Builder\ITesterBuilderConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Builder\" />
-    <Folder Include="Persister\" />
+    <Folder Include="Impl\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="CSF.CollectionComparers" Version="1.0.0" />
+    <PackageReference Include="NHibernate" Version="4.0.0.4000" />
+    <PackageReference Include="CSF.EqualityRules" Version="1.0.0" />
   </ItemGroup>
 </Project>

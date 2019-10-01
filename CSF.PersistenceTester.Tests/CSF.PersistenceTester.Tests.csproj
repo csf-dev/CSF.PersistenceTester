@@ -11,12 +11,9 @@
     <PackageReference Include="NUnit" Version="3.12.0" />
     <PackageReference Include="AutoFixture.NUnit3" Version="4.11.0" />
     <PackageReference Include="AutoFixture.AutoMoq" Version="4.11.0" />
-    <PackageReference Include="CSF.Reflection" Version="1.0.4" />
+    <PackageReference Include="CSF.Reflection" Version="2.0.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.13.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.2.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Impl\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSF.PersistenceTester\CSF.PersistenceTester.csproj" />
