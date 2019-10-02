@@ -1,0 +1,54 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>CSF.PersistenceTester</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>bin\Debug\netstandard2.0\CSF.PersistenceTester.NHibernate.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType></DebugType>
+    <DocumentationFile>bin\Release\netstandard2.0\CSF.PersistenceTester.NHibernate4.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_NH51|AnyCPU' ">
+    <DocumentationFile>bin\Debug_NH51\netstandard2.0\CSF.PersistenceTester.NHibernate.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <OutputPath>bin\Debug_NH51</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_NH52|AnyCPU' ">
+    <DocumentationFile>bin\Debug_NH52\netstandard2.0\CSF.PersistenceTester.NHibernate.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <OutputPath>bin\Debug_NH52</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_NH50|AnyCPU' ">
+    <DocumentationFile>bin\Debug_NH50\netstandard2.0\CSF.PersistenceTester.NHibernate.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <OutputPath>bin\Debug_NH50</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug_NH40|AnyCPU' ">
+    <DocumentationFile>bin\Debug_NH40\netstandard2.0\CSF.PersistenceTester.NHibernate.xml</DocumentationFile>
+    <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
+    <OutputPath>bin\Debug_NH40</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSF.PersistenceTester.Core\CSF.PersistenceTester.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NHibernate" Version="[4.0.0,6)"
+                      Condition="'$(Configuration)' == 'Debug' OR '$(Configuration)' == 'Release'" />
+    <PackageReference Include="NHibernate" Version="4.0.0.4000"
+                      Condition="'$(Configuration)' == 'Debug_NH40'" />
+    <PackageReference Include="NHibernate" Version="[5.0.0,5.1.0)"
+                      Condition="'$(Configuration)' == 'Debug_NH50'" />
+    <PackageReference Include="NHibernate" Version="[5.1.0,5.2.0)"
+                      Condition="'$(Configuration)' == 'Debug_NH51'" />
+    <PackageReference Include="NHibernate" Version="[5.2.0,6)"
+                      Condition="'$(Configuration)' == 'Debug_NH52'" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NHibernate\" />
+  </ItemGroup>
+</Project>
