@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using CSF.EqualityRules;
 using CSF.PersistenceTester.Impl;
-using NHibernate;
 
 namespace CSF.PersistenceTester.Builder
 {
@@ -10,14 +9,14 @@ namespace CSF.PersistenceTester.Builder
     {
         readonly IGetsSession sessionProvider;
         readonly Func<PersistenceTestSpec<T>, ITestsPersistence<T>> testerFactory;
-        Action<ISession> setup;
+        Action<IGetsSession> setup;
         T entity;
 
         #region setup
 
-        public IChoosesEntity<T> WithSetup(Action<ISession> setup, bool implicitTransaction = true)
+        IChoosesEntity<T> IConfiguresTestSetup<T>.WithSetup(Action<IGetsSession> setup, bool implicitTransaction)
         {
-            if(!implicitTransaction)
+            if (!implicitTransaction)
             {
                 this.setup = setup;
             }
@@ -25,7 +24,7 @@ namespace CSF.PersistenceTester.Builder
             {
                 this.setup = session =>
                 {
-                    using (var tran = session.BeginTransaction())
+                    using (var tran = session.GetSession())
                     {
                         setup(session);
                     }
@@ -49,7 +48,7 @@ namespace CSF.PersistenceTester.Builder
 
         #region comparison
 
-        public PersistenceTestResult WithComparison(IEqualityComparer<T> comparer)
+        PersistenceTestResult IConfiguresComparison<T>.WithComparison(IEqualityComparer<T> comparer)
         {
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
@@ -60,26 +59,31 @@ namespace CSF.PersistenceTester.Builder
             return WithComparison(rule);
         }
 
-        public PersistenceTestResult WithComparison(Func<EqualityBuilder<T>, EqualityBuilder<T>> equalityBuilderAction, IResolvesServices resolver = null)
+        PersistenceTestResult IConfiguresComparison<T>.WithComparison(Func<EqualityBuilder<T>, EqualityBuilder<T>> equalityBuilderAction, IResolvesServices resolver)
         {
             if (equalityBuilderAction == null)
                 throw new ArgumentNullException(nameof(equalityBuilderAction));
 
             var builder = new EqualityBuilder<T>(resolver);
             builder = equalityBuilderAction(builder);
-            if(builder == null)
+            if (builder == null)
                 throw new ArgumentException("The equality builder action must not return null", nameof(equalityBuilderAction));
 
             var rule = builder.Build();
             return WithComparison(rule);
         }
 
-        public PersistenceTestResult WithComparison(IGetsEqualityResult<T> equalityRule)
+        PersistenceTestResult IConfiguresComparison<T>.WithComparison(IGetsEqualityResult<T> equalityRule)
+        {
+            return WithComparison(equalityRule);
+        }
+
+        PersistenceTestResult WithComparison(IGetsEqualityResult<T> equalityRule)
         {
             if (equalityRule == null)
                 throw new ArgumentNullException(nameof(equalityRule));
             if (entity == null)
-                throw new InvalidOperationException($"Entity must not be null.  Use {nameof(WithEntity)} to provide it before calling {nameof(WithComparison)}.");
+                throw new InvalidOperationException($"Entity must not be null.  Use {nameof(IChoosesEntity<T>.WithEntity)} to provide it before calling {nameof(WithComparison)}.");
 
             var spec = new PersistenceTestSpec<T>(sessionProvider, entity, equalityRule)
             {

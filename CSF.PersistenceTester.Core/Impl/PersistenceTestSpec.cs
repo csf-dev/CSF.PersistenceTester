@@ -1,14 +1,13 @@
 ﻿using System;
 using CSF.EqualityRules;
 using CSF.PersistenceTester.Builder;
-using NHibernate;
 
 namespace CSF.PersistenceTester.Impl
 {
     public class PersistenceTestSpec<T> where T : class
     {
         public IGetsSession SessionProvider { get; }
-        public Action<ISession> Setup { get; set; }
+        public Action<IGetsSession> Setup { get; set; }
         public T Entity { get; }
         public IGetsEqualityResult<T> EqualityRule { get; }
 

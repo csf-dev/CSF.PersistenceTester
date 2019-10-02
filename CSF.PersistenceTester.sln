@@ -1,9 +1,13 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester", "CSF.PersistenceTester\CSF.PersistenceTester.csproj", "{5C9BEDC7-6802-455B-97B3-A87803692B3C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.Core", "CSF.PersistenceTester.Core\CSF.PersistenceTester.Core.csproj", "{5C9BEDC7-6802-455B-97B3-A87803692B3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.Tests", "CSF.PersistenceTester.Tests\CSF.PersistenceTester.Tests.csproj", "{35816F67-68D9-43C8-B8E4-A1E42D7B6D88}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.NHibernate4", "CSF.PersistenceTester.NHibernate4\CSF.PersistenceTester.NHibernate4.csproj", "{C20EFE47-2C18-451E-A0D5-7ADB75E263F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.NHibernate5", "CSF.PersistenceTester.NHibernate5\CSF.PersistenceTester.NHibernate5.csproj", "{8099DB5D-AE51-495B-B817-0E50CDA99C32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,5 +23,13 @@ Global
 		{35816F67-68D9-43C8-B8E4-A1E42D7B6D88}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35816F67-68D9-43C8-B8E4-A1E42D7B6D88}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35816F67-68D9-43C8-B8E4-A1E42D7B6D88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C20EFE47-2C18-451E-A0D5-7ADB75E263F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C20EFE47-2C18-451E-A0D5-7ADB75E263F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C20EFE47-2C18-451E-A0D5-7ADB75E263F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C20EFE47-2C18-451E-A0D5-7ADB75E263F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8099DB5D-AE51-495B-B817-0E50CDA99C32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8099DB5D-AE51-495B-B817-0E50CDA99C32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8099DB5D-AE51-495B-B817-0E50CDA99C32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8099DB5D-AE51-495B-B817-0E50CDA99C32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

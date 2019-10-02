@@ -1,5 +1,5 @@
 ﻿using System;
-using NHibernate;
+using CSF.PersistenceTester.NHibernate;
 
 namespace CSF.PersistenceTester.Impl
 {
@@ -25,7 +25,7 @@ namespace CSF.PersistenceTester.Impl
         {
             try
             {
-                spec.Setup?.Invoke(spec.SessionProvider.GetSession());
+                spec.Setup?.Invoke(spec.SessionProvider);
             }
             catch(Exception ex)
             {

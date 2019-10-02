@@ -1,5 +1,5 @@
 ﻿using System;
-using NHibernate;
+using CSF.PersistenceTester.NHibernate;
 
 namespace CSF.PersistenceTester.Builder
 {
