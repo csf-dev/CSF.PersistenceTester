@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>CSF.PersistenceTester</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="3.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSF.PersistenceTester.Core\CSF.PersistenceTester.Core.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Constraints\" />
+  </ItemGroup>
+</Project>

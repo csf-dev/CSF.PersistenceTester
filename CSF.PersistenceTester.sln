@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.NHibernate", "CSF.PersistenceTester.NHibernate\CSF.PersistenceTester.NHibernate.csproj", "{C20EFE47-2C18-451E-A0D5-7ADB75E263F8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.NUnit", "CSF.PersistenceTester.NUnit\CSF.PersistenceTester.NUnit.csproj", "{00299E6B-084F-441D-B5FB-367D84103038}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,5 +55,17 @@ Global
 		{C20EFE47-2C18-451E-A0D5-7ADB75E263F8}.Debug_NH50|Any CPU.Build.0 = Debug_NH50|Any CPU
 		{C20EFE47-2C18-451E-A0D5-7ADB75E263F8}.Debug_NH40|Any CPU.ActiveCfg = Debug_NH40|Any CPU
 		{C20EFE47-2C18-451E-A0D5-7ADB75E263F8}.Debug_NH40|Any CPU.Build.0 = Debug_NH40|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH51|Any CPU.ActiveCfg = Debug|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH51|Any CPU.Build.0 = Debug|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH52|Any CPU.ActiveCfg = Debug|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH52|Any CPU.Build.0 = Debug|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH50|Any CPU.ActiveCfg = Debug|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH50|Any CPU.Build.0 = Debug|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH40|Any CPU.ActiveCfg = Debug|Any CPU
+		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH40|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 EndGlobal

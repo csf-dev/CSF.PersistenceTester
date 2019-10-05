@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace CSF.PersistenceTester.Tests
 {
@@ -7,6 +6,5 @@ namespace CSF.PersistenceTester.Tests
     {
         public long Identity { get; set; }
         public string StringProperty { get; set; }
-        public ISet<SampleChildEntity> ChildEntities { get; set; }
     }
 }
