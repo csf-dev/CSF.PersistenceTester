@@ -12,17 +12,21 @@ namespace CSF.PersistenceTester.Builder
 
         IChoosesEntity IConfiguresTestSetup.WithSetup(Action<IGetsSession> setup, bool implicitTransaction)
         {
+            if (setup == null) return this;
+
             if (!implicitTransaction)
             {
                 this.setup = setup;
             }
             else
             {
-                this.setup = session =>
+                this.setup = sessionProvider =>
                 {
-                    using (var tran = session.GetSession())
+                    var session = sessionProvider.GetSession();
+
+                    using(var tran = session.BeginTransaction())
                     {
-                        setup(session);
+                        setup(sessionProvider);
                     }
                 };
             }

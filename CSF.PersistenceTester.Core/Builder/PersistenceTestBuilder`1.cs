@@ -10,10 +10,25 @@ namespace CSF.PersistenceTester.Builder
     /// </summary>
     public class PersistenceTestBuilder<T> : IConfiguresComparison<T> where T : class
     {
-        readonly IGetsSession sessionProvider;
         readonly Func<PersistenceTestSpec<T>, ITestsPersistence<T>> testerFactory;
-        readonly Action<IGetsSession> setup;
-        readonly T entity;
+
+        /// <summary>
+        /// Gets the session provider.
+        /// </summary>
+        /// <value>The session provider.</value>
+        public IGetsSession SessionProvider { get; }
+
+        /// <summary>
+        /// Gets the optional setup action.
+        /// </summary>
+        /// <value>The setup action.</value>
+        public Action<IGetsSession> Setup { get; }
+
+        /// <summary>
+        /// Gets the entity which is to be tested.
+        /// </summary>
+        /// <value>The entity.</value>
+        public T Entity { get; }
 
         #region comparison
 
@@ -52,9 +67,9 @@ namespace CSF.PersistenceTester.Builder
             if (equalityRule == null)
                 throw new ArgumentNullException(nameof(equalityRule));
 
-            var spec = new PersistenceTestSpec<T>(sessionProvider, entity, equalityRule)
+            var spec = new PersistenceTestSpec<T>(SessionProvider, Entity, equalityRule)
             {
-                Setup = setup
+                Setup = Setup
             };
 
             using (var tester = testerFactory(spec))
@@ -77,9 +92,9 @@ namespace CSF.PersistenceTester.Builder
                                       Action<IGetsSession> setup,
                                       Func<PersistenceTestSpec<T>,ITestsPersistence<T>> testerFactory = null)
         {
-            this.sessionProvider = sessionProvider ?? throw new ArgumentNullException(nameof(sessionProvider));
-            this.entity = entity ?? throw new ArgumentNullException(nameof(entity));
-            this.setup = setup;
+            this.SessionProvider = sessionProvider ?? throw new ArgumentNullException(nameof(sessionProvider));
+            this.Entity = entity ?? throw new ArgumentNullException(nameof(entity));
+            this.Setup = setup;
             this.testerFactory = testerFactory ?? (spec => new PersistenceTester<T>(spec));
         }
     }
