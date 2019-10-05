@@ -1,7 +1,10 @@
 ﻿using System;
 namespace CSF.PersistenceTester
 {
-    public interface IChoosesEntityWithOptionalSetup<T> : IChoosesEntity<T>, IConfiguresTestSetup<T> where T : class
+    /// <summary>
+    /// A service which is the union of <see cref="IChoosesEntity"/> and <see cref="IConfiguresTestSetup"/>.
+    /// </summary>
+    public interface IChoosesEntityWithOptionalSetup : IChoosesEntity, IConfiguresTestSetup
     {
     }
 }

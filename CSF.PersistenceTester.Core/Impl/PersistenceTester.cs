@@ -3,11 +3,19 @@ using CSF.PersistenceTester.NHibernate;
 
 namespace CSF.PersistenceTester.Impl
 {
+    /// <summary>
+    /// The persistence tester, which contains the logic to perform the actual persistence test itself
+    /// and get a result.
+    /// </summary>
     public class PersistenceTester<T> : ITestsPersistence<T>where T : class
     {
         readonly PersistenceTestSpec<T> spec;
         object identity;
 
+        /// <summary>
+        /// Gets the test result.
+        /// </summary>
+        /// <returns>The test result.</returns>
         public PersistenceTestResult GetTestResult()
         {
             PersistenceTestResult result = null;
@@ -89,6 +97,10 @@ namespace CSF.PersistenceTester.Impl
             }
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PersistenceTester{T}"/> class.
+        /// </summary>
+        /// <param name="spec">The specification for a persistence test.</param>
         public PersistenceTester(PersistenceTestSpec<T> spec)
         {
             this.spec = spec ?? throw new ArgumentNullException(nameof(spec));
@@ -97,6 +109,10 @@ namespace CSF.PersistenceTester.Impl
         #region IDisposable Support
         private bool disposedValue = false;
 
+        /// <summary>
+        /// Dispose the current instance.
+        /// </summary>
+        /// <param name="disposing">If set to <c>true</c> then disposal is explicit.</param>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposedValue)
@@ -109,6 +125,15 @@ namespace CSF.PersistenceTester.Impl
             }
         }
 
+        /// <summary>
+        /// Releases all resource used by the <see cref="PersistenceTester{T}"/> object.
+        /// </summary>
+        /// <remarks>Call <see cref="Dispose()"/> when you are finished using the
+        /// <see cref="PersistenceTester{T}"/>. The <see cref="Dispose()"/> method leaves the
+        /// <see cref="PersistenceTester{T}"/> in an unusable state. After calling
+        /// <see cref="Dispose()"/>, you must release all references to the
+        /// <see cref="PersistenceTester{T}"/> so the garbage collector can reclaim the
+        /// memory that the <see cref="PersistenceTester{T}"/> was occupying.</remarks>
         public void Dispose()
         {
             Dispose(true);
