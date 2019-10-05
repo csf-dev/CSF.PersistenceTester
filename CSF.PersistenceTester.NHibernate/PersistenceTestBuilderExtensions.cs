@@ -19,8 +19,8 @@ namespace CSF.PersistenceTester
         /// <param name="setup">The setup action.</param>
         /// <param name="implicitTransaction">If set to <c>true</c> then the setup action will be executed within an implicit database transaction.</param>
         public static IChoosesEntity WithSetup(this PersistenceTestBuilder builder,
-                                                     Action<INhSession> setup,
-                                                     bool implicitTransaction = true)
+                                               Action<INhSession> setup,
+                                               bool implicitTransaction = true)
         {
             if (builder == null)
                 throw new ArgumentNullException(nameof(builder));

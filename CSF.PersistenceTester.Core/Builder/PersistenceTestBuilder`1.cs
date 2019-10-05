@@ -32,7 +32,7 @@ namespace CSF.PersistenceTester.Builder
 
         #region comparison
 
-        PersistenceTestResult IConfiguresComparison<T>.WithComparison(IEqualityComparer<T> comparer)
+        PersistenceTestResult IConfiguresComparison<T>.WithEqualityComparer(IEqualityComparer<T> comparer)
         {
             if (comparer == null)
                 throw new ArgumentNullException(nameof(comparer));
@@ -40,10 +40,10 @@ namespace CSF.PersistenceTester.Builder
             var rule = new EqualityBuilder<T>()
                 .For("Default", x => x, c => c.UsingComparer(comparer))
                 .Build();
-            return WithComparison(rule);
+            return WithEqualityRule(rule);
         }
 
-        PersistenceTestResult IConfiguresComparison<T>.WithComparison(Func<EqualityBuilder<T>, EqualityBuilder<T>> equalityBuilderAction, IResolvesServices resolver)
+        PersistenceTestResult IConfiguresComparison<T>.WithEqualityRule(Func<EqualityBuilder<T>, EqualityBuilder<T>> equalityBuilderAction, IResolvesServices resolver)
         {
             if (equalityBuilderAction == null)
                 throw new ArgumentNullException(nameof(equalityBuilderAction));
@@ -54,15 +54,15 @@ namespace CSF.PersistenceTester.Builder
                 throw new ArgumentException("The equality builder action must not return null", nameof(equalityBuilderAction));
 
             var rule = builder.Build();
-            return WithComparison(rule);
+            return WithEqualityRule(rule);
         }
 
-        PersistenceTestResult IConfiguresComparison<T>.WithComparison(IGetsEqualityResult<T> equalityRule)
+        PersistenceTestResult IConfiguresComparison<T>.WithEqualityRule(IGetsEqualityResult<T> equalityRule)
         {
-            return WithComparison(equalityRule);
+            return WithEqualityRule(equalityRule);
         }
 
-        PersistenceTestResult WithComparison(IGetsEqualityResult<T> equalityRule)
+        PersistenceTestResult WithEqualityRule(IGetsEqualityResult<T> equalityRule)
         {
             if (equalityRule == null)
                 throw new ArgumentNullException(nameof(equalityRule));
