@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NUnit" Version="3.0.0" />
+    <PackageReference Include="NUnit" Version="[3.0.0,4.0.0)" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSF.PersistenceTester.Core\CSF.PersistenceTester.Core.csproj" />

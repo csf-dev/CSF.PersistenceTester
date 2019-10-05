@@ -38,7 +38,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NHibernate" Version="[4.0.0,6)" Condition="'$(Configuration)' == 'Debug' OR '$(Configuration)' == 'Release'" />
-    <PackageReference Include="NHibernate" Version="4.0.0.4000" Condition="'$(Configuration)' == 'Debug_NH40'" />
+    <PackageReference Include="NHibernate" Version="[4.0.0.4000,5.0.0)" Condition="'$(Configuration)' == 'Debug_NH40'" />
     <PackageReference Include="NHibernate" Version="[5.0.0,5.1.0)" Condition="'$(Configuration)' == 'Debug_NH50'" />
     <PackageReference Include="NHibernate" Version="[5.1.0,5.2.0)" Condition="'$(Configuration)' == 'Debug_NH51'" />
     <PackageReference Include="NHibernate" Version="[5.2.0,6)" Condition="'$(Configuration)' == 'Debug_NH52'" />
