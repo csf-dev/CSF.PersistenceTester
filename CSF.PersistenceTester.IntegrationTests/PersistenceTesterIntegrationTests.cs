@@ -30,6 +30,28 @@ namespace CSF.PersistenceTester.Tests
         }
 
         [Test, AutoMoqData]
+        public void Persistence_test_fails_when_the_setup_throws_an_exception(SampleEntity entity,
+                                                                              SessionFactoryProvider factoryProvider,
+                                                                              SchemaCreator schemaCreator)
+        {
+            var factory = factoryProvider.GetSessionFactory();
+            var result = TestPersistence.UsingSessionFactory(factory)
+                .WithSetup(s =>
+                {
+                    schemaCreator.CreateSchema(s.Connection);
+                    throw new InvalidOperationException("Sample exception");
+                })
+                .WithEntity(entity)
+                .WithEqualityRule(r => r.ForAllOtherProperties());
+
+            Assert.That(() =>
+            {
+                Assert.That(result, Persisted.Successfully());
+            }, Throws.InstanceOf<AssertionException>());
+            Assert.That(result?.SetupException, Is.Not.Null);
+        }
+
+        [Test, AutoMoqData]
         public void Persistence_test_fails_for_an_incorrectly_mapped_entity(EntityWithUnmappedProperty entity,
                                                                             SessionFactoryProvider factoryProvider,
                                                                             SchemaCreator schemaCreator)
