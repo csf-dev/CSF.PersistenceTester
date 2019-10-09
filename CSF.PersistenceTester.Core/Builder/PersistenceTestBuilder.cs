@@ -27,6 +27,7 @@ namespace CSF.PersistenceTester.Builder
                     using(var tran = session.BeginTransaction())
                     {
                         setup(sessionProvider);
+                        tran.Commit();
                     }
                 };
             }
