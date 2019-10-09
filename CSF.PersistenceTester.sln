@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.NHibe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.NUnit", "CSF.PersistenceTester.NUnit\CSF.PersistenceTester.NUnit.csproj", "{00299E6B-084F-441D-B5FB-367D84103038}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSF.PersistenceTester.IntegrationTests", "CSF.PersistenceTester.IntegrationTests\CSF.PersistenceTester.IntegrationTests.csproj", "{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,5 +69,17 @@ Global
 		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH50|Any CPU.Build.0 = Debug|Any CPU
 		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH40|Any CPU.ActiveCfg = Debug|Any CPU
 		{00299E6B-084F-441D-B5FB-367D84103038}.Debug_NH40|Any CPU.Build.0 = Debug|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug_NH51|Any CPU.ActiveCfg = Release|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug_NH51|Any CPU.Build.0 = Release|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug_NH52|Any CPU.ActiveCfg = Release|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug_NH52|Any CPU.Build.0 = Release|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug_NH50|Any CPU.ActiveCfg = Release|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug_NH50|Any CPU.Build.0 = Release|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug_NH40|Any CPU.ActiveCfg = Release|Any CPU
+		{F44DE9F1-0639-4F9E-9D7C-3ABD5A2DE8B5}.Debug_NH40|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
