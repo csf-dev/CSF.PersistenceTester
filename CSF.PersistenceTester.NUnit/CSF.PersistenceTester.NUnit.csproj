@@ -27,6 +27,7 @@
   <ItemGroup>
     <PackageReference Include="NUnit" Version="[3.0.0,4.0.0)" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSF.PersistenceTester.NHibernate\CSF.PersistenceTester.NHibernate.csproj" />

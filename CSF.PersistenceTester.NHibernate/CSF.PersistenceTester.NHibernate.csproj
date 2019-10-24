@@ -54,6 +54,7 @@
     <PackageReference Include="NHibernate" Version="[5.1.0,5.2.0)" Condition="'$(Configuration)' == 'Debug_NH51'" />
     <PackageReference Include="NHibernate" Version="[5.2.0,6)" Condition="'$(Configuration)' == 'Debug_NH52'" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NHibernate\" />
