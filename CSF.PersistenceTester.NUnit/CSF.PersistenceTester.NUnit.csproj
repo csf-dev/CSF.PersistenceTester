@@ -5,13 +5,23 @@
     <RootNamespace>CSF.PersistenceTester</RootNamespace>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
+    <Authors>CSF Software Limited</Authors>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/csf-dev/CSF.PersistenceTester</PackageProjectUrl>
+    <Summary>NUnit integration for CSF.PersistenceTester</Summary>
+    <Description>An integration between CSF.PersistenceTester and NUnit 3.x.  Provides a convenient way to assert that a persietence test passed.</Description>
+    <PackageId>CSF.PersistenceTester.NUnit</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
+    <Title>NHibernate persistence tester: NUnit integration</Title>
+    <PackOnBuild>true</PackOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NUnit" Version="[3.0.0,4.0.0)" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSF.PersistenceTester.Core\CSF.PersistenceTester.Core.csproj" />
+    <ProjectReference Include="..\CSF.PersistenceTester.NHibernate\CSF.PersistenceTester.NHibernate.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Constraints\" />

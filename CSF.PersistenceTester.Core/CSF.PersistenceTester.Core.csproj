@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\CSF.PersistenceTester.Core.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard1.2\CSF.PersistenceTester.Core.xml</DocumentationFile>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -22,5 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CSF.EqualityRules" Version="1.0.0" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
   </ItemGroup>
 </Project>

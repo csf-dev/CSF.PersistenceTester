@@ -5,6 +5,15 @@
     <RootNamespace>CSF.PersistenceTester</RootNamespace>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
+    <PackOnBuild>true</PackOnBuild>
+    <Authors>CSF Software Limited</Authors>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/csf-dev/CSF.PersistenceTester</PackageProjectUrl>
+    <Summary>A persistence testing library for NHibernate</Summary>
+    <Title>NHibernate persistence tester</Title>
+    <Description>A small library to help test NHibernate persistence.  Provides a structured way to test saving an entity, re-loading it from the database and then comparing it with the original.</Description>
+    <PackageId>CSF.PersistenceTester</PackageId>
+    <PackageVersion>1.0.0</PackageVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -44,6 +53,7 @@
     <PackageReference Include="NHibernate" Version="[5.0.0,5.1.0)" Condition="'$(Configuration)' == 'Debug_NH50'" />
     <PackageReference Include="NHibernate" Version="[5.1.0,5.2.0)" Condition="'$(Configuration)' == 'Debug_NH51'" />
     <PackageReference Include="NHibernate" Version="[5.2.0,6)" Condition="'$(Configuration)' == 'Debug_NH52'" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="NHibernate\" />
