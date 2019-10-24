@@ -14,11 +14,6 @@
     <DocumentationFile>bin\Release\netstandard1.2\CSF.PersistenceTester.Core.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Class1.cs" />
-    <Compile Remove="Builder\IBuildsTester.cs" />
-    <Compile Remove="Builder\ITesterBuilderConfig.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Builder\" />
     <Folder Include="Impl\" />
     <Folder Include="NHibernate\" />
