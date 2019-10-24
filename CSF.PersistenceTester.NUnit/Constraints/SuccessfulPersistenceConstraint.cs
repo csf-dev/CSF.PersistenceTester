@@ -3,8 +3,16 @@ using NUnit.Framework.Constraints;
 
 namespace CSF.PersistenceTester.Constraints
 {
+    /// <summary>
+    /// An NUnit constraint which asserts that a persistence test was a success.
+    /// </summary>
     public class SuccessfulPersistenceConstraint : Constraint
     {
+        /// <summary>
+        /// Applies the constraint to an actual value, returning a ConstraintResult.
+        /// </summary>
+        /// <param name="actual">The value to be tested</param>
+        /// <returns>A ConstraintResult</returns>
         public override ConstraintResult ApplyTo<TActual>(TActual actual)
         {
             ConstraintResult result;

@@ -1,23 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.2</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>CSF.PersistenceTester</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\CSF-Software-OSS.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\CSF.PersistenceTester.Core.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard1.2\CSF.PersistenceTester.Core.xml</DocumentationFile>
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType></DebugType>
-    <DocumentationFile>bin\Release\netstandard1.2\CSF.PersistenceTester.Core.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\CSF.PersistenceTester.Core.xml</DocumentationFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Class1.cs" />
-    <Compile Remove="Builder\IBuildsTester.cs" />
-    <Compile Remove="Builder\ITesterBuilderConfig.cs" />
-  </ItemGroup>
   <ItemGroup>
     <Folder Include="Builder\" />
     <Folder Include="Impl\" />
@@ -25,5 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="CSF.EqualityRules" Version="1.0.0" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.2" />
+    <PackageReference Include="NETStandard.Library" Version="2.0.3" />
   </ItemGroup>
 </Project>
